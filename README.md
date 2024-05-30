@@ -46,4 +46,4 @@ https://github.com/manish-3012/capstone
 
 ## Contact
 ### Project Maintainer
-For any questions or further information, please contact the project maintainer.
+For any questions or further information, please contact at: csemanish.official@gmail.com
