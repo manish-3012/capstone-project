@@ -76,24 +76,24 @@ class ProjectMapperImplTests {
         EmployeeEntity manager = new EmployeeEntity();
         manager.setEmpId(4L);
 
-        return ProjectEntity.builder()
-                .id(1L)
-                .name("Project A")
-                .description("This is Project A")
-                .skills(Arrays.asList("Java", "Python"))
-                .employeeIds(Arrays.asList(employee1, employee2))
-                .manager(manager)
+        return new ProjectEntity.Builder()
+                .setId(1L)
+                .setName("Project A")
+                .setDescription("This is Project A")
+                .setSkills(Arrays.asList("Java", "Python"))
+                .setEmployeeIds(Arrays.asList(employee1, employee2))
+                .setManager(manager)
                 .build();
     }
 
     private ProjectDto createProjectDto() {
-        return ProjectDto.builder()
-                .id(1L)
-                .name("Project A")
-                .description("This is Project A")
-                .skills(Arrays.asList("Java", "Python"))
-                .employeeIds(Arrays.asList(2L, 3L))
-                .manager(4L)
+        return new ProjectDto.Builder()
+                .setId(1L)
+                .setName("Project A")
+                .setDescription("This is Project A")
+                .setSkills(Arrays.asList("Java", "Python"))
+                .setEmployeeIds(Arrays.asList(2L, 3L))
+                .setManager(4L)
                 .build();
     }
 }

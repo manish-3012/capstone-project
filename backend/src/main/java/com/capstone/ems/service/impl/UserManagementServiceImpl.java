@@ -7,8 +7,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +16,6 @@ import com.capstone.ems.domain.entities.EmployeeEntity;
 import com.capstone.ems.domain.entities.UserEntity;
 import com.capstone.ems.repository.EmployeeRepository;
 import com.capstone.ems.repository.UserRepository;
-import com.capstone.ems.service.EmployeeService;
 import com.capstone.ems.service.UserManagementService;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -49,11 +46,11 @@ public class UserManagementServiceImpl implements UserManagementService{
             String email = username + "@nucleusteq.com";
             
             // Create EmployeeEntity first
-            EmployeeEntity emp = EmployeeEntity.builder()
-                    .name(registrationRequest.getName())
-                    .email(email)
-                    .userType(registrationRequest.getRole())
-                    .username(username)
+            EmployeeEntity emp = new EmployeeEntity.Builder()
+                    .setName(registrationRequest.getName())
+                    .setEmail(email)
+                    .setUserType(registrationRequest.getRole())
+                    .setUsername(username)
                     .build();
             EmployeeEntity empResult = employeeRepository.save(emp);
             

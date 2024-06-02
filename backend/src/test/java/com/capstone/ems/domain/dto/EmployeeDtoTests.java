@@ -62,17 +62,17 @@ public class EmployeeDtoTests {
         UserType userType = UserType.EMPLOYEE;
         Long userId = 6L;
 
-        EmployeeDto employeeDto = EmployeeDto.builder()
-                .empId(empId)
-                .username(username)
-                .email(email)
-                .name(name)
-                .skills(skills)
-                .managerId(managerId)
-                .managedProjectIds(managedProjectIds)
-                .projectId(projectId)
-                .userType(userType)
-                .userId(userId)
+        EmployeeDto employeeDto = new EmployeeDto.Builder()
+                .setEmpId(empId)
+                .setUsername(username)
+                .setEmail(email)
+                .setName(name)
+                .setSkills(skills)
+                .setManagerId(managerId)
+                .setManagedProjectIds(managedProjectIds)
+                .setProjectId(projectId)
+                .setUserType(userType)
+                .setUserId(userId)
                 .build();
 
         assertEquals(empId, employeeDto.getEmpId());

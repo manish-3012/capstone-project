@@ -82,49 +82,49 @@ class EmployeeMapperImplTests {
     }
 
     private EmployeeEntity createEmployeeEntity() {
-        EmployeeEntity manager = EmployeeEntity.builder()
-                .empId(2L)
+        EmployeeEntity manager = new EmployeeEntity.Builder()
+                .setEmpId(2L)
                 .build();
 
-        ProjectEntity project = ProjectEntity.builder()
-                .id(3L)
+        ProjectEntity project = new ProjectEntity.Builder()
+                .setId(3L)
                 .build();
 
         List<ProjectEntity> managedProjectIds = Arrays.asList(
-                ProjectEntity.builder().id(4L).build(),
-                ProjectEntity.builder().id(5L).build()
+                new ProjectEntity.Builder().setId(4L).build(),
+                new ProjectEntity.Builder().setId(5L).build()
         );
 
         UserEntity user = UserEntity.builder()
                 .userId(6L)
                 .build();
 
-        return EmployeeEntity.builder()
-                .empId(1L)
-                .username("johndoe")
-                .email("john.doe@example.com")
-                .name("John Doe")
-                .skills(Arrays.asList("Java", "Python"))
-                .manager(manager)
-                .project(project)
-                .managedProjectIds(managedProjectIds)
-                .userType(UserType.ADMIN)
-                .user(user)
+        return new EmployeeEntity.Builder()
+                .setEmpId(1L)
+                .setUsername("johndoe")
+                .setEmail("john.doe@example.com")
+                .setName("John Doe")
+                .setSkills(Arrays.asList("Java", "Python"))
+                .setManager(manager)
+                .setProject(project)
+                .setManagedProjectIds(managedProjectIds)
+                .setUserType(UserType.ADMIN)
+                .setUser(user)
                 .build();
     }
 
     private EmployeeDto createEmployeeDto() {
-        return EmployeeDto.builder()
-                .empId(1L)
-                .username("johndoe")
-                .email("john.doe@example.com")
-                .name("John Doe")
-                .skills(Arrays.asList("Java", "Python"))
-                .managerId(2L)
-                .projectId(3L)
-                .userType(UserType.ADMIN)
-                .managedProjectIds(Arrays.asList(4L, 5L))
-                .userId(6L)
+        return new EmployeeDto.Builder()
+                .setEmpId(1L)
+                .setUsername("johndoe")
+                .setEmail("john.doe@example.com")
+                .setName("John Doe")
+                .setSkills(Arrays.asList("Java", "Python"))
+                .setManagerId(2L)
+                .setProjectId(3L)
+                .setUserType(UserType.ADMIN)
+                .setManagedProjectIds(Arrays.asList(4L, 5L))
+                .setUserId(6L)
                 .build();
     }
 }

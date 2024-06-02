@@ -217,7 +217,7 @@ public class ProjectControllerTest {
     public void testGetProjectsForManager_ValidManager() throws Exception {
         ProjectDto projectDto1 = new ProjectDto();
         projectDto1.setId(1L);
-        projectDto1.setName("Project 1");
+        projectDto1.setName("Test Project");
 
         ProjectDto projectDto2 = new ProjectDto();
         projectDto2.setId(2L);
@@ -241,8 +241,8 @@ public class ProjectControllerTest {
         mockMvc.perform(get("/manager/get-projects")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].id").value(projectDto2.getId()))
-                .andExpect(jsonPath("$[0].name").value(projectDto2.getName()))
+                .andExpect(jsonPath("$[0].id").value(projectDto.getId()))
+                .andExpect(jsonPath("$[0].name").value(projectDto.getName()))
                 .andExpect(jsonPath("$[1].id").value(projectDto2.getId()))
                 .andExpect(jsonPath("$[1].name").value(projectDto2.getName()));
     }

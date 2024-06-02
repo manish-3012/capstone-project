@@ -1,34 +1,46 @@
 package com.capstone.ems.domain.dto;
 
-import static org.junit.jupiter.api.Assertions.*;
+import com.capstone.ems.domain.entities.UserEntity;
+import com.capstone.ems.enums.UserType;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
 
-import com.capstone.ems.domain.entities.UserEntity;
-import com.capstone.ems.enums.UserType;
+class ReqResTest {
 
-public class ReqResTest {
+    @Mock
+    private UserEntity mockUser;
+
+    private ReqRes reqRes;
+
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+        reqRes = new ReqRes();
+    }
 
     @Test
-    public void testGettersAndSetters() {
+    void testGettersAndSetters() {
         int statusCode = 200;
         String error = "No error";
         String message = "Success";
-        String token = "abcd1234";
-        String refreshToken = "efgh5678";
-        String expirationTime = "2023-06-30T12:00:00Z";
+        String token = "token123";
+        String refreshToken = "refreshToken456";
+        String expirationTime = "2024-06-02T12:00:00Z";
         String name = "John Doe";
         UserType role = UserType.ADMIN;
         String email = "john.doe@example.com";
         String password = "password123";
-        UserEntity userEntity = new UserEntity();
-        List<UserEntity> userList = new ArrayList<>();
-        userList.add(userEntity);
-
-        ReqRes reqRes = new ReqRes();
+        UserEntity user = mockUser;
+        List<UserEntity> usersList = new ArrayList<>();
+        usersList.add(mockUser);
 
         reqRes.setStatusCode(statusCode);
         reqRes.setError(error);
@@ -40,8 +52,8 @@ public class ReqResTest {
         reqRes.setRole(role);
         reqRes.setEmail(email);
         reqRes.setPassword(password);
-        reqRes.setOurUsers(userEntity);
-        reqRes.setOurUsersList(userList);
+        reqRes.setOurUsers(user);
+        reqRes.setOurUsersList(usersList);
 
         assertEquals(statusCode, reqRes.getStatusCode());
         assertEquals(error, reqRes.getError());
@@ -53,7 +65,54 @@ public class ReqResTest {
         assertEquals(role, reqRes.getRole());
         assertEquals(email, reqRes.getEmail());
         assertEquals(password, reqRes.getPassword());
-        assertEquals(userEntity, reqRes.getOurUsers());
-        assertEquals(userList, reqRes.getOurUsersList());
+        assertEquals(user, reqRes.getOurUsers());
+        assertEquals(usersList, reqRes.getOurUsersList());
+    }
+
+    @Test
+    void testBuilder() {
+        int statusCode = 200;
+        String error = "No error";
+        String message = "Success";
+        String token = "token123";
+        String refreshToken = "refreshToken456";
+        String expirationTime = "2024-06-02T12:00:00Z";
+        String name = "John Doe";
+        UserType role = UserType.ADMIN;
+        String email = "john.doe@example.com";
+        String password = "password123";
+        UserEntity user = mockUser;
+        List<UserEntity> usersList = new ArrayList<>();
+        usersList.add(mockUser);
+
+        when(mockUser.getRole()).thenReturn(role);
+
+        ReqRes builtReqRes = ReqRes.builder()
+                .statusCode(statusCode)
+                .error(error)
+                .message(message)
+                .token(token)
+                .refreshToken(refreshToken)
+                .expirationTime(expirationTime)
+                .name(name)
+                .role(role)
+                .email(email)
+                .password(password)
+                .ourUsers(user)
+                .ourUsersList(usersList)
+                .build();
+
+        assertEquals(statusCode, builtReqRes.getStatusCode());
+        assertEquals(error, builtReqRes.getError());
+        assertEquals(message, builtReqRes.getMessage());
+        assertEquals(token, builtReqRes.getToken());
+        assertEquals(refreshToken, builtReqRes.getRefreshToken());
+        assertEquals(expirationTime, builtReqRes.getExpirationTime());
+        assertEquals(name, builtReqRes.getName());
+        assertEquals(role, builtReqRes.getRole());
+        assertEquals(email, builtReqRes.getEmail());
+        assertEquals(password, builtReqRes.getPassword());
+        assertEquals(user, builtReqRes.getOurUsers());
+        assertEquals(usersList, builtReqRes.getOurUsersList());
     }
 }

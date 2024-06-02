@@ -43,13 +43,13 @@ public class ProjectDtoTests {
         List<Long> employeeIds = Arrays.asList(2L, 3L);
         Long manager = 4L;
 
-        ProjectDto projectDto = ProjectDto.builder()
-                .id(id)
-                .name(name)
-                .description(description)
-                .skills(skills)
-                .employeeIds(employeeIds)
-                .manager(manager)
+        ProjectDto projectDto = new ProjectDto.Builder()
+                .setId(id)
+                .setName(name)
+                .setDescription(description)
+                .setSkills(skills)
+                .setEmployeeIds(employeeIds)
+                .setManager(manager)
                 .build();
 
         assertEquals(id, projectDto.getId());

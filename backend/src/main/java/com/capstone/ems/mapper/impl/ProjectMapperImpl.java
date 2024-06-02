@@ -26,13 +26,13 @@ public class ProjectMapperImpl implements Mapper<ProjectEntity, ProjectDto> {
 
         Long managerId = projectEntity.getManager() != null ? projectEntity.getManager().getEmpId() : null;
 
-        return ProjectDto.builder()
-                .id(projectEntity.getId())
-                .name(projectEntity.getName())
-                .description(projectEntity.getDescription())
-                .skills(projectEntity.getSkills())
-                .employeeIds(employeeIds)
-                .manager(managerId)
+        return new ProjectDto.Builder()
+                .setId(projectEntity.getId())
+                .setName(projectEntity.getName())
+                .setDescription(projectEntity.getDescription())
+                .setSkills(projectEntity.getSkills())
+                .setEmployeeIds(employeeIds)
+                .setManager(managerId)
                 .build();
     }
 
@@ -57,13 +57,13 @@ public class ProjectMapperImpl implements Mapper<ProjectEntity, ProjectDto> {
             manager.setEmpId(projectDTO.getManager());
         }
 
-        return ProjectEntity.builder()
-                .id(projectDTO.getId())
-                .name(projectDTO.getName())
-                .description(projectDTO.getDescription())
-                .skills(projectDTO.getSkills())
-                .employeeIds(employees)
-                .manager(manager)
+        return new ProjectEntity.Builder()
+                .setId(projectDTO.getId())
+                .setName(projectDTO.getName())
+                .setDescription(projectDTO.getDescription())
+                .setSkills(projectDTO.getSkills())
+                .setEmployeeIds(employees)
+                .setManager(manager)
                 .build();
     }
 }

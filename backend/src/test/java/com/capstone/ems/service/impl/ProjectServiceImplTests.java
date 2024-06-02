@@ -45,8 +45,8 @@ class ProjectServiceImplTests {
         EmployeeEntity manager = new EmployeeEntity();
         manager.setEmpId(1L);
 
-        ProjectEntity projectEntity = ProjectEntity.builder()
-                .manager(manager)
+        ProjectEntity projectEntity = new ProjectEntity.Builder()
+                .setManager(manager)
                 .build();
 
         when(projectRepository.save(any(ProjectEntity.class))).thenReturn(projectEntity);
@@ -59,8 +59,8 @@ class ProjectServiceImplTests {
 
     @Test
     void testSave_ManagerIsNull() {
-        ProjectEntity projectEntity = ProjectEntity.builder()
-                .manager(null)
+        ProjectEntity projectEntity = new ProjectEntity.Builder()
+                .setManager(null)
                 .build();
 
         assertThrows(IllegalArgumentException.class, () -> projectService.save(projectEntity));
@@ -72,8 +72,8 @@ class ProjectServiceImplTests {
         EmployeeEntity manager = new EmployeeEntity();
         manager.setEmpId(null);
 
-        ProjectEntity projectEntity = ProjectEntity.builder()
-                .manager(manager)
+        ProjectEntity projectEntity = new ProjectEntity.Builder()
+                .setManager(manager)
                 .build();
 
         assertThrows(IllegalArgumentException.class, () -> projectService.save(projectEntity));

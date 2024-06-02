@@ -334,3 +334,33 @@
   background-color: #093c72;
   }
   
+  nav {
+    height: 100vh; /* Set the height to 100% of the viewport height */
+    width: 200px; /* Set the width of the sidebar */
+    position: fixed; /* Make the sidebar fixed in position */
+    top: 0; /* Position it at the top */
+    left: 0; /* Position it on the left */
+    background-color: #333; /* Set the background color (adjust as needed) */
+    padding: 20px; /* Add some padding for better spacing */
+  }
+  
+  nav ul {
+    list-style-type: none; /* Remove default bullet points */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+  }
+  
+  nav li {
+    margin-bottom: 10px; /* Add some spacing between list items */
+  }
+  
+  nav a {
+    color: #fff; /* Set the link color (adjust as needed) */
+    text-decoration: none; /* Remove underline from links */
+    display: block; /* Make links take up the full width */
+    padding: 10px; /* Add some padding for better spacing */
+  }
+  
+  nav a:hover {
+    background-color: #555; /* Change background color on hover (adjust as needed) */
+  }
