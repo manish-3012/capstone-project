@@ -1,5 +1,7 @@
 package com.capstone.ems.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,6 +26,8 @@ import com.capstone.ems.service.UserEntityDetailService;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+	
+	Logger log = LoggerFactory.getLogger(SecurityConfig.class);
 	
 	@Autowired
 	private UserEntityDetailService userEntityDetailService;
@@ -50,13 +54,13 @@ public class SecurityConfig {
                 .authenticationProvider(authenticationProvider()).addFilterBefore(
                         jwtAuthFilter, UsernamePasswordAuthenticationFilter.class
                 );
-        System.out.println("SECURITY CONFIG: returning from security filter chain");
+        log.info("SECURITY CONFIG: returning from security filter chain");
         return httpSecurity.build();
     }
     
     @Bean
     public AuthenticationProvider authenticationProvider() {
-    	System.out.println("SECURITY CONFIG: Entered authentication provider");
+    	log.info("SECURITY CONFIG: Entered authentication provider");
     	DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
     	provider.setUserDetailsService(userEntityDetailService);
     	provider.setPasswordEncoder(passwordEncoder());
@@ -70,7 +74,7 @@ public class SecurityConfig {
     
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-    	System.out.println("SECURITY CONFIG: Entered authentication manager");
+    	log.info("SECURITY CONFIG: Entered authentication manager");
 		return authenticationConfiguration.getAuthenticationManager();
     	
     }
